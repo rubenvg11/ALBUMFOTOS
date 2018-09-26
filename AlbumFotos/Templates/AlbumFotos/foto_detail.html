@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block section %} 
+    <h2> 
+        {{ object.title }}
+        {% if object.favorite %} 
+            &#9733; 
+        {% else %}
+            &#9734; 
+        {% endif %} 
+        {% if object.categoria_id %} 
+            ( <a href="{% url 'categoria-detalles' object.categoria_id %}">{{ object.categoria }}</a> ) 
+        {% endif %} 
+    </h2> 
+    <p><strong>Comentarios: </strong>{{ object.comment|default:"Sin Comentarios" }}</p>
+    <a class="btn btn-primary" href="{% url 'foto-update' object.id %}">Editar</a>
+    <a class="btn btn-primary" href="{% url 'foto-delete' object.id %}">Eliminar</a> 
+    <hr> 
+{% endblock section %}
+{% block maincontent %} 
+<div> 
+    <div> 
+        <img src="{% static object.foto.url %}" style="width:550px;height:420px"/> 
+    </div> 
+</div>
+{% endblock maincontent %} 
+
+            
+                

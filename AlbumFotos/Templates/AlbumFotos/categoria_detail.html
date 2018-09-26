@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block section %} 
+    <h2>{{ object.nombre }}</h2>
+    <hr> 
+{% endblock section %}
+{% block maincontent %} 
+<div> 
+    <table border="1px">
+        <tr>
+            {% for p in object.foto_set.all %}
+                <td> 
+                    <div>{{ p.titulo }}</div> 
+                    <div> 
+                        <a href='{% url  "foto-detail" p.id  %}'> 
+                            <img src="{% static p.foto.url %}" style="width:200px; height:200px"/> 
+                        </a> 
+                    </div> 
+                </td> 
+            {% endfor %} 
+        </tr>
+    </table>
+</div>
+{% endblock maincontent %} 
